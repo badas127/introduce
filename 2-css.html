@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>백한결의 자기소개 페이지</title>
+    <style>
+        /* =========================================
+           기본 리셋 및 타이포그래피 (고급스러운 다크 모드)
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important; /* 엄격한 각진 디자인 적용 */
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: #0c0d10; /* 깊이감 있는 프리미엄 딥블랙 */
+            color: #d1d5db; /* 편안한 가독성의 라이트 그레이 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            line-height: 1.75;
+            padding: 40px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 중앙 정렬 컨테이너 */
+        header, nav, main, footer {
+            width: 100%;
+            max-width: 780px;
+        }
+
+        /* 기본 구분선(hr) 제거 후 카드 간격으로 일관성 유지 */
+        hr {
+            display: none;
+        }
+
+        /* =========================================
+           각진 카드 공통 스타일
+           ========================================= */
+        header, 
+        nav, 
+        main section, 
+        footer {
+            background-color: #14151b; /* 매트한 다크 차콜 카드 */
+            border: 1px solid #262832; /* 샤프한 미니멀 테두리 */
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+            position: relative;
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        /* 카드 호버 시 은은한 하이라이트 */
+        header:hover, 
+        nav:hover, 
+        main section:hover {
+            border-color: #3e4252;
+            transform: translateY(-2px);
+        }
+
+        /* 헤딩 스타일링 */
+        h1, h2, h3 {
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 14px;
+        }
+
+        h2 {
+            font-size: 1.35rem;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            border-left: 3px solid #ffffff;
+            padding-left: 12px;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 22px 0 10px 0;
+            color: #f3f4f6;
+            background: #1c1e27;
+            padding: 8px 14px;
+            border: 1px solid #2a2e3d;
+            border-left: 3px solid #94a3b8;
+        }
+
+        p {
+            color: #a1a1aa;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            word-break: keep-all;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           헤더 영역
+           ========================================= */
+        header {
+            background: linear-gradient(180deg, #181a22 0%, #13141a 100%);
+            border-top: 3px solid #ffffff;
+        }
+
+        header p {
+            color: #9ca3af;
+            font-size: 1.05rem;
+            margin-bottom: 0;
+        }
+
+        /* =========================================
+           목차 (네비게이션)
+           ========================================= */
+        nav ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        nav li a {
+            display: block;
+            padding: 10px 14px;
+            background-color: #1a1c24;
+            color: #d1d5db;
+            text-decoration: none;
+            border: 1px solid #2c303d;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        nav li a:hover {
+            background-color: #ffffff;
+            color: #0c0d10;
+            border-color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           섹션 1: 기본 프로필 (사진 + 정의 목록 레이아웃)
+           ========================================= */
+        .profile-container {
+            display: flex;
+            gap: 24px;
+            align-items: stretch;
+            margin-top: 12px;
+        }
+
+        .profile-img-box {
+            flex-shrink: 0;
+            width: 170px;
+            background-color: #101116;
+            border: 1px solid #22242e;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            object-fit: cover;
+            display: block;
+            border: 1px solid #2e3240;
+            transition: filter 0.2s ease, border-color 0.2s ease;
+        }
+
+        .profile-img:hover {
+            border-color: #ffffff;
+        }
+
+        #profile dl {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 12px 16px;
+            background-color: #101116;
+            padding: 20px;
+            border: 1px solid #22242e;
+        }
+
+        #profile dt {
+            color: #e5e7eb;
+            font-weight: 600;
+            border-right: 1px solid #272a36;
+            padding-right: 12px;
+        }
+
+        #profile dd {
+            color: #9ca3af;
+        }
+
+        /* =========================================
+           섹션 2 & 4: 목록 (ul, ol)
+           ========================================= */
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            color: #a1a1aa;
+            margin-bottom: 8px;
+            padding-left: 4px;
+        }
+
+        li strong {
+            color: #e5e7eb;
+        }
+
+        /* =========================================
+           섹션 3: 나의 꿈 (인용구 blockquote)
+           ========================================= */
+        blockquote {
+            background-color: #181a24;
+            border: 1px solid #2b2f3e;
+            border-left: 4px solid #ffffff;
+            padding: 18px 24px;
+            margin: 18px 0;
+        }
+
+        blockquote p {
+            color: #f3f4f6;
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-bottom: 0;
+            letter-spacing: -0.01em;
+        }
+
+        /* =========================================
+           푸터 영역
+           ========================================= */
+        footer {
+            text-align: center;
+            padding: 24px 20px;
+            background-color: #0f1015;
+            border-color: #20222a;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #71717a;
+        }
+
+        footer a {
+            display: inline-block;
+            margin-top: 4px;
+            color: #e5e7eb;
+            text-decoration: none;
+            padding: 6px 14px;
+            border: 1px solid #373b49;
+            background: #181920;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        footer a:hover {
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        /* =========================================
+           모바일 반응형 최적화 (핸드폰 화면 대응)
+           ========================================= */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px 10px;
+            }
+
+            header, 
+            nav, 
+            main section, 
+            footer {
+                padding: 22px 18px;
+                margin-bottom: 16px;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            h3 {
+                font-size: 1.02rem;
+                padding: 6px 10px;
+            }
+
+            nav ul {
+                grid-template-columns: 1fr; /* 모바일에서 1열 전체 너비 */
+                gap: 8px;
+            }
+
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .profile-img-box {
+                width: 160px;
+                height: 200px;
+            }
+
+            #profile dl {
+                width: 100%;
+                grid-template-columns: 1fr; /* 키와 값을 세로 1열로 배치 */
+                gap: 6px;
+                padding: 14px;
+            }
+
+            #profile dt {
+                border-right: none;
+                border-bottom: 1px dashed #2a2e3d;
+                padding-bottom: 4px;
+                margin-top: 8px;
+            }
+
+            #profile dt:first-child {
+                margin-top: 0;
+            }
+
+            #profile dd {
+                padding-left: 4px;
+            }
+
+            blockquote {
+                padding: 14px 16px;
+            }
+
+            blockquote p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 영역 -->
+    <header id="top">
+        <h1>안녕하세요! 백한결의 자기소개 페이지입니다 👋</h1>
+        <p>저의 관심사와 꿈, 그리고 요즘 하고 있는 진로 고민을 친구들에게 소개합니다.</p>
+    </header>
+
+    <hr>
+
+    <!-- 네비게이션 목차 -->
+    <nav>
+        <h2>목차</h2>
+        <ul>
+            <li><a href="#profile">1. 기본 프로필</a></li>
+            <li><a href="#hobbies">2. 내가 좋아하는 것들</a></li>
+            <li><a href="#dream">3. 나의 꿈과 가치관</a></li>
+            <li><a href="#career">4. 요즘 생각하는 진로: 체육 교육과</a></li>
+            <li><a href="#message">5. 친구들에게 전하는 말</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main>
+        <!-- 기본 프로필 -->
+        <section id="profile">
+            <h2>1. 기본 프로필</h2>
+            <div class="profile-container">
+                <div class="profile-img-box">
+                    <img src="profile.jpg" alt="백한결 프로필 사진" class="profile-img">
+                </div>
+                <dl>
+                    <dt><strong>이름</strong></dt>
+                    <dd>백한결</dd>
+                    
+                    <dt><strong>MBTI</strong></dt>
+                    <dd>ENFJ (정의로운 주인공 & 따뜻한 열정가)</dd>
+                    
+                    <dt><strong>주요 관심사</strong></dt>
+                    <dd>스포츠 활동, 음악 활동, 영화 및 드라마 감상</dd>
+                    
+                    <dt><strong>인생의 모토 / 꿈</strong></dt>
+                    <dd>의미 있는 일을 하면서 행복하게 살아가기</dd>
+                    
+                    <dt><strong>관심 진로</strong></dt>
+                    <dd>체육 교육과</dd>
+                </dl>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- 좋아하는 것들 -->
+        <section id="hobbies">
+            <h2>2. 내가 좋아하는 것들</h2>
+            <p>다양한 활동을 즐기며 하루하루를 알차고 즐겁게 보내려고 합니다.</p>
+
+            <h3>⚽ 스포츠 활동</h3>
+            <ul>
+                <li>몸을 움직이고 땀을 흘리며 에너지를 발산하는 시간을 가장 좋아합니다.</li>
+                <li>친구들과 팀을 짜서 함께 땀 흘리고 협동하는 스포츠는 언제나 환영입니다!</li>
+                <li>꾸준한 운동을 통해 체력도 기르고 긍정적인 활력을 얻고 있습니다.</li>
+            </ul>
+
+            <h3>🎵 음악 활동</h3>
+            <ul>
+                <li>기분에 따라 다양한 장르의 음악을 찾아 듣는 것을 즐깁니다.</li>
+                <li>좋은 음악을 들으면 스트레스도 풀리고 집중도 더 잘 되는 편입니다.</li>
+                <li>노래를 부르거나 악기를 다루는 등 음악과 함께하는 모든 활동을 좋아합니다.</li>
+            </ul>
+
+            <h3>🎬 영화 & 드라마 보기</h3>
+            <ul>
+                <li>여유가 생길 때마다 명작 영화나 재미있는 드라마를 몰아보는 것을 좋아합니다.</li>
+                <li>몰입감 넘치는 스토리를 보고 난 후, 친구들과 인상 깊었던 장면이나 소감을 나누는 것도 큰 즐거움입니다.</li>
+                <li>좋은 작품이 있다면 언제든 추천해 주세요!</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <!-- 나의 꿈 -->
+        <section id="dream">
+            <h2>3. 나의 꿈과 가치관</h2>
+            <blockquote>
+                <p><em>"의미 있는 일을 하면서 행복하게 살아가기"</em></p>
+            </blockquote>
+            <p>단순히 성공만을 좇기보다는, <strong>나 자신에게 보람차고 다른 사람들에게도 긍정적인 영향을 줄 수 있는 일</strong>을 하고 싶습니다.</p>
+            <p>매일 작은 행복을 발견하고, 소중한 사람들과 의미 있는 순간들을 함께 채워나가는 것이 제가 바라는 인생의 모습입니다.</p>
+        </section>
+
+        <hr>
+
+        <!-- 진로 고민 -->
+        <section id="career">
+            <h2>4. 요즘 생각하는 진로: 체육 교육과</h2>
+            <p>요즘에는 저의 특기와 관심사를 살려 <strong>체육 교육과</strong> 쪽 진로를 진지하게 고민하고 있습니다.</p>
+            
+            <h3>체육 교육과를 생각하게 된 이유</h3>
+            <ol>
+                <li><strong>좋아하는 분야와의 일치:</strong> 평소 가장 즐기는 스포츠 활동을 전문적으로 배우고 실천할 수 있습니다.</li>
+                <li><strong>의미 있는 일:</strong> 학생들에게 건강한 신체 활동의 기쁨을 알려주고, 바른 인성과 체력을 기를 수 있도록 돕는 교육자라는 직업이 가치 있게 느껴집니다.</li>
+                <li><strong>행복한 삶:</strong> 좋아하는 스포츠와 보람찬 교육을 함께할 수 있어 제 꿈인 '의미 있는 일을 하며 행복하게 살기'와 잘 맞닿아 있습니다.</li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <!-- 친구들에게 전하는 말 -->
+        <section id="message">
+            <h2>5. 친구들에게 전하는 말</h2>
+            <p>함께 운동하고 싶거나, 좋은 음악이나 영화를 추천해주고 싶은 친구는 언제든 편하게 말 걸어줘!</p>
+            <p>앞으로도 서로 응원하며 즐거운 추억 많이 만들자 😊</p>
+        </section>
+    </main>
+
+    <hr>
+
+    <!-- 푸터 영역 -->
+    <footer>
+        <p>&copy; 2026 백한결. 모든 권리 보유.</p>
+        <p><a href="#top">맨 위로 올라가기</a></p>
+    </footer>
+
+</body>
+</html>
